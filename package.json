@@ -1,0 +1,35 @@
+{
+  "name": "myteamprofile",
+  "version": "1.0.0",
+  "description": "This is an application to build a team profile for web developers",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test",
+    "start": "node index.js",
+    "watch": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Forester93/MyTeamProfile.git"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "keywords": [
+    "Team",
+    "Profile",
+    "Generator",
+    "NodeJS",
+    "JavaScript"
+  ],
+  "author": "Mark Forester",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Forester93/MyTeamProfile/issues"
+  },
+  "homepage": "https://github.com/Forester93/MyTeamProfile#readme",
+  "dependencies": {
+    "inquirer": "^8.0.0",
+    "jest": "^26.6.3"
+  }
+}
