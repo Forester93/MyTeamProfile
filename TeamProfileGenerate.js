@@ -66,104 +66,6 @@ class Intern extends Employee {
     return this.school;
   }
 }
-// to build the body of the readme file
-let buildPage = function (
-  first,
-  last,
-  email,
-  phoneNumber,
-  badges,
-  installation,
-  languages,
-  git,
-  description,
-  usage,
-  projectTitle,
-  repository,
-  relativeLinkScreenshot,
-  test,
-  contributing
-) {
-  let page = `
-  # ${projectTitle}.
-  
-## License
-  ${badge()}
-
-## Contents
-
-• [License](#license)
-• [Description](#description)
-• [Usage](#usage)
-• [Installation](#installation)
-• [Technologies](#technologies)
-• [Test](#test)
-• [Links](#links)
-• [Questions](#questions)
-• [Contributing](#contributing)
-
-## Description
-
-${description}
-
-### Usage
-
-To run the application you need to run the following command line:
-
-\`\`\`
-${usage}
-\`\`\`
-
-### Installation
-
-To install the application you need to run the following command line:
-
-\`\`\`bash
-${installation}
-\`\`\`
-
-### Technologies
-
-${buildList()}
-
-### Test
-
-To test the application you need to run the following command line:
-
-\`\`\`bash
-${test}
-\`\`\`
-
-## Links
-
-### Link to the Deployed Application
-[${projectTitle} Deployed Webpage](https://${git}.github.io/${repository}/)
-
-### Link to the Github Repository
-
-[${projectTitle} Github Repo](https://github.com/${git}/${repository}/)
-
-${screenshot()}
-
-## Questions
-
-You can reach out to me over one of the following for any questions about this application.
-
-|Name|Email|Phone Numer|GitHubProfile|
-|----|-----|-----------|-------------|
-|${first} ${last}|${email}|${phoneNumber}|[${
-    first + " " + last
-  } Github Profile](https://github.com/${git}/)
-
-
-## Contributing
-
-${contributing}
-
-      `;
-
-  return page;
-};
 
 let teamManagerData = [
   {
@@ -233,6 +135,139 @@ let internData = [
   },
 ];
 
+// to build the body of the html file
+function buildPage() {
+  function generateCard(employee) {
+    switch (employee.getRole()) {
+      case "Manager":
+        return `
+        <div class="card text-center">
+                <div class="card-body">
+                  <h5 class="card-title">${employee.name}</h5>
+                  <hr />
+                  <p class="card-text">Role: ${employee.getRole()}</p>
+                  <hr />
+                  <p class="card-text">Email: <a href="mailto:${
+                    employee.email
+                  }">${employee.email}</a></p>
+                  <hr />
+                  <p class="card-text">Office Number: ${
+                    employee.officeNumber
+                  }</p>
+                  <hr />
+                  <p class="card-text">
+                    <small class="text-muted">ID: ${employee.id}</small>
+                  </p>
+                </div>
+              </div>`;
+      case "Engineer":
+        return `
+        <div class="card text-center">
+                <div class="card-body">
+                  <h5 class="card-title">${employee.name}</h5>
+                  <hr />
+                  <p class="card-text">Role: ${employee.getRole()}</p>
+                  <hr />
+                  <p class="card-text">Email: <a href=mailto:${
+                    employee.email
+                  }>${employee.email}</a></p>
+                  <hr />
+                  <p class="card-text">Github: <a href="http://www.github.com/${
+                    employee.github
+                  }">${employee.getGithub()}</a></p>
+                  <hr />
+                  <p class="card-text">
+                    <small class="text-muted">ID: ${employee.id}</small>
+                  </p>
+                </div>
+              </div>`;
+      case "Intern":
+        return `
+        <div class="card text-center">
+                <div class="card-body">
+                  <h5 class="card-title">${employee.name}</h5>
+                  <hr />
+                  <p class="card-text">Role: ${employee.getRole()}</p>
+                  <hr />
+                  <p class="card-text">Email: <a href=mailto:${
+                    employee.email
+                  }>${employee.email}</a></p>
+                  <hr />
+                  <p class="card-text">School: ${employee.getSchool()}</a></p>
+                  <hr />
+                  <p class="card-text">
+                    <small class="text-muted">ID: ${employee.id}</small>
+                  </p>
+                </div>
+              </div>`;
+    }
+  }
+  function buildColumns() {
+    let htmlContent = "";
+    for (employee of Employees) {
+      htmlContent += generateCard(employee);
+    }
+    return htmlContent;
+  }
+  let page = `
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>My Team Profile</title>
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
+      />
+      <style>
+        .bg-black {
+          background-color: black;
+        }
+        /* On screens that are 992px or less */
+        @media screen and (max-width: 992px) {
+          .card-columns {
+            column-count: 3;
+          }
+        }
+  
+        /* On screens that are 780px or less*/
+        @media screen and (max-width: 780px) {
+          .card-columns {
+            column-count: 2;
+          }
+        }
+        @media screen and (max-width: 480px) {
+          .card-columns {
+            column-count: 1;
+          }
+        }
+      </style>
+    </head>
+    <body class="bg-black">
+      <div class="jumbotron container">
+        <h1 class="display-4">Welcome to My Team Profile</h1>
+        <!-- Welcome Message -->
+        <p class="lead text-dark">
+          This page contains the contact details of our team members.
+        </p>
+        <hr class="my-4" />
+      </div>
+      <div class="card-columns container">
+        ${buildColumns()}
+      </div>
+  
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+    </body>
+  </html>
+  `;
+
+  return page;
+}
+
 function makeChoice() {
   inquirer
     .prompt([
@@ -270,7 +305,15 @@ function makeChoice() {
           });
           break;
         case "Finish Building Team":
-          console.log(Employees);
+          fs.writeFile(
+            //writing the README.md file
+            `./Team_Profile.html`,
+            buildPage(),
+            (err) => {
+              if (err) console.error(err);
+            }
+          );
+          console.log("Team Profile Page Generated Successfully"); //success prompt
       }
     });
 }
