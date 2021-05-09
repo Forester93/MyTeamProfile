@@ -300,19 +300,22 @@ function makeChoice() {
             });
           break;
         case "Intern":
-          inquirer.prompt(internData).then((response) => {
-            let intern = new Intern(
-              response.name,
-              response.id,
-              response.email,
-              response.school
-            ).catch((err) => {
+          inquirer
+            .prompt(internData)
+            .then((response) => {
+              let intern = new Intern(
+                response.name,
+                response.id,
+                response.email,
+                response.school
+              );
+              Employees.push(intern);
+              makeChoice();
+            })
+            .catch((err) => {
               console.log("Something went wrong\n");
               console.error(err);
             });
-            Employees.push(intern);
-            makeChoice();
-          });
           break;
         case "Finish Building Team":
           fs.writeFile(
