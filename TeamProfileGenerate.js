@@ -268,6 +268,7 @@ function buildPage() {
   return page;
 }
 
+//to get the next choice from the user
 function makeChoice() {
   inquirer
     .prompt([
@@ -281,16 +282,22 @@ function makeChoice() {
     .then((response) => {
       switch (response.next) {
         case "Engineer":
-          inquirer.prompt(engineerData).then((response) => {
-            let engineer = new Engineer(
-              response.name,
-              response.id,
-              response.email,
-              response.github
-            );
-            Employees.push(engineer);
-            makeChoice();
-          });
+          inquirer
+            .prompt(engineerData)
+            .then((response) => {
+              let engineer = new Engineer(
+                response.name,
+                response.id,
+                response.email,
+                response.github
+              );
+              Employees.push(engineer);
+              makeChoice();
+            })
+            .catch((err) => {
+              console.log("Something went wrong\n");
+              console.error(err);
+            });
           break;
         case "Intern":
           inquirer.prompt(internData).then((response) => {
@@ -299,7 +306,10 @@ function makeChoice() {
               response.id,
               response.email,
               response.school
-            );
+            ).catch((err) => {
+              console.log("Something went wrong\n");
+              console.error(err);
+            });
             Employees.push(intern);
             makeChoice();
           });
@@ -315,15 +325,27 @@ function makeChoice() {
           );
           console.log("Team Profile Page Generated Successfully"); //success prompt
       }
+    })
+    .catch((err) => {
+      console.log("Something went wrong\n");
+      console.error(err);
     });
 }
-inquirer.prompt(teamManagerData).then((response) => {
-  let manager = new Manager(
-    response.name,
-    response.id,
-    response.email,
-    response.officeNumber
-  );
-  Employees.push(manager);
-  makeChoice();
-});
+
+// Main command line that starts the application
+inquirer
+  .prompt(teamManagerData)
+  .then((response) => {
+    let manager = new Manager(
+      response.name,
+      response.id,
+      response.email,
+      response.officeNumber
+    );
+    Employees.push(manager);
+    makeChoice();
+  })
+  .catch((err) => {
+    console.log("Something went wrong\n");
+    console.error(err);
+  });
