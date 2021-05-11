@@ -4,7 +4,7 @@
   "description": "This is an application to build a team profile for web developers",
   "main": "index.js",
   "scripts": {
-    "test": "node test-app.js",
+    "test": "jest",
     "start": "node TeamProfileGenerate.js",
     "watch": "nodemon TeamProfileGenerate.js"
   },

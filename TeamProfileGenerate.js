@@ -9,63 +9,11 @@ const Choices = require("inquirer/lib/objects/choices");
 
 let Employees = [];
 
-//define parents class
-class Employee {
-  constructor(name, id, email) {
-    this.name = name;
-    this.id = id;
-    this.email = email;
-  }
-  getName() {
-    return this.name;
-  }
-  getID() {
-    return this.id;
-  }
-  getEmail() {
-    return this.email;
-  }
-  getRole() {
-    return "Employee";
-  }
-}
+//import classes
 
-//define child classes
-class Manager extends Employee {
-  constructor(name, id, email, officeNumber) {
-    super(name, id, email);
-    this.officeNumber = officeNumber;
-  }
-  getRole() {
-    return "Manager";
-  }
-}
-
-class Engineer extends Employee {
-  constructor(name, id, email, github) {
-    super(name, id, email);
-    this.github = github;
-  }
-  getRole() {
-    return "Engineer";
-  }
-  getGithub() {
-    return this.github;
-  }
-}
-
-class Intern extends Employee {
-  constructor(name, id, email, school) {
-    super(name, id, email);
-    this.school = school;
-  }
-  getRole() {
-    return "Intern";
-  }
-  getSchool() {
-    return this.school;
-  }
-}
+let Manager = require("./lib/Manager");
+let Engineer = require("./lib/Engineer");
+let Intern = require("./lib/Intern");
 
 let teamManagerData = [
   {
