@@ -3,20 +3,20 @@ const Engineer = require("../lib/engineer.js");
 
 it("Can set GitHub account via constructor argument", () => {
   const employee = new Engineer(
-    "Andrew",
-    7456,
-    "andrew@gmail.com",
-    "andrew123"
+    "Mark",
+    1,
+    "Mark@example.com",
+    "markexample123"
   );
-  expect(employee.github).toBe("andrew123");
+  expect(employee.github).toBe("markexample123");
 });
 
 it("getRole() should return 'Engineer'", () => {
   const employee = new Engineer(
-    "Andrew",
-    7456,
-    "andrew@gmail.com",
-    "andrew123"
+    "Mark",
+    1,
+    "Mark@example.com",
+    "markexample123"
   );
 
   expect(employee.getRole()).toBe("Engineer");
@@ -24,11 +24,11 @@ it("getRole() should return 'Engineer'", () => {
 
 it("Can get Github username via getGithub()", () => {
   const employee = new Engineer(
-    "Andrew",
-    7456,
-    "andrew@gmail.com",
-    "andrew123"
+    "Mark",
+    1,
+    "Mark@example.com",
+    "markexample123"
   );
 
-  expect(employee.getGithub()).toBe("andrew123");
+  expect(employee.getGithub()).toBe("markexample123");
 });
