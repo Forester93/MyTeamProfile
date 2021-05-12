@@ -1,4 +1,4 @@
-# My Team Profile.
+# My Team Profile
 
 ## License
 
@@ -56,6 +56,14 @@ npm test
 ### Link to the Github Repository
 
 [My Team Profile Github Repo](https://github.com/forester93/MyTeamProfile/)
+
+### Link to a Video Tutorial
+
+[Video Tutorial](https://drive.google.com/file/d/1XoZ-2rA62oWCBwwbfjhVMU3pzMqQ9NrY/view?usp=sharing)
+
+### Link to a Generated Profile Sample
+
+[Generated Profile Sample](https://drive.google.com/file/d/1v99AAfR_w8YaZlQte2L1Kmh_ySTjoj3c/view?usp=sharing)
 
 ### Screenshot of the Application
 
